@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/bcochofel/homelab-proxmox-gitlab/compare/v1.0.0...v1.1.0) (2025-11-20)
+
+
+### Features
+
+* **terraform:** Cloud-init configuration ([78402ab](https://github.com/bcochofel/homelab-proxmox-gitlab/commit/78402ab4bb4abe979b446394866ce9cac4d92a18))
+
 # 1.0.0 (2025-11-20)
 
 
