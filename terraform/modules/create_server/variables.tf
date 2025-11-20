@@ -138,6 +138,24 @@ variable "default_disk_storage" {
   default     = "local-lvm"
 }
 
+variable "default_ciuser" {
+  type        = string
+  description = "Override the default cloud-init user"
+}
+
+variable "default_cipassword" {
+  type        = string
+  description = "Override the default cloud-init password"
+}
+
+variable "default_cisshkeys" {
+  type        = string
+  description = <<EOT
+Newline delimited list of SSH public keys to add to authorized keys file for the
+cloud-init user.
+EOT
+}
+
 ## VMs to create ##
 
 variable "vms" {
@@ -161,6 +179,9 @@ variable "vms" {
     searchdomain = optional(string)
     nameserver   = optional(string)
     ipconfig0    = optional(string)
+    ciuser       = optional(string)
+    cipassword   = optional(string)
+    cisshkeys    = optional(string)
     network = optional(object({
       model  = optional(string)
       bridge = optional(string)
