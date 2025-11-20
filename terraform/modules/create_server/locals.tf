@@ -21,6 +21,9 @@ locals {
       searchdomain = v.searchdomain != null ? v.searchdomain : var.default_searchdomain
       nameserver   = v.nameserver != null ? v.nameserver : var.default_nameserver
       ipconfig0    = v.ipconfig0 != null ? v.ipconfig0 : var.default_ipconfig0
+      ciuser       = v.ciuser != null ? v.ciuser : var.default_ciuser
+      cipassword   = v.cipassword != null ? v.cipassword : var.default_cipassword
+      sshkeys      = v.cisshkeys != null ? v.cisshkeys : var.default_cisshkeys
       network = {
         model  = try(v.network.model, var.default_network_model)
         bridge = try(v.network.bridge, var.default_network_bridge)

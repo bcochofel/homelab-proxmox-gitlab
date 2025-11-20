@@ -17,6 +17,24 @@ variable "pm_api_token_secret" {
   sensitive   = true
 }
 
+variable "ciuser" {
+  type        = string
+  description = "Override the default cloud-init user"
+}
+
+variable "cipassword" {
+  type        = string
+  description = "Override the default cloud-init password"
+}
+
+variable "cisshkeys" {
+  type        = string
+  description = <<EOT
+Newline delimited list of SSH public keys to add to authorized keys file for the
+cloud-init user.
+EOT
+}
+
 variable "vms" {
   type = map(object({
     name         = optional(string)

@@ -28,6 +28,9 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_cipassword"></a> [cipassword](#input\_cipassword) | Override the default cloud-init password | `string` | n/a | yes |
+| <a name="input_cisshkeys"></a> [cisshkeys](#input\_cisshkeys) | Newline delimited list of SSH public keys to add to authorized keys file for the<br/>cloud-init user. | `string` | n/a | yes |
+| <a name="input_ciuser"></a> [ciuser](#input\_ciuser) | Override the default cloud-init user | `string` | n/a | yes |
 | <a name="input_pm_api_token_id"></a> [pm\_api\_token\_id](#input\_pm\_api\_token\_id) | This is an API token you have previously created for a specific user. | `string` | n/a | yes |
 | <a name="input_pm_api_token_secret"></a> [pm\_api\_token\_secret](#input\_pm\_api\_token\_secret) | This uuid is only available when the token was initially created. | `string` | n/a | yes |
 | <a name="input_pm_api_url"></a> [pm\_api\_url](#input\_pm\_api\_url) | This is the target Proxmox API endpoint. | `string` | n/a | yes |

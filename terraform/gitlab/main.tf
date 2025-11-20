@@ -11,4 +11,8 @@ module "gitlab" {
   source = "../modules/create_server"
 
   vms = var.vms
+
+  default_ciuser     = var.ciuser
+  default_cipassword = var.cipassword
+  default_cisshkeys  = var.cisshkeys
 }

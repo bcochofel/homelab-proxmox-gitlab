@@ -26,6 +26,9 @@ resource "proxmox_vm_qemu" "vms" {
   searchdomain = each.value.searchdomain
   nameserver   = each.value.nameserver
   ipconfig0    = each.value.ipconfig0
+  ciuser       = each.value.ciuser
+  cipassword   = each.value.cipassword
+  sshkeys      = each.value.sshkeys
 
   network {
     model  = each.value.network.model
