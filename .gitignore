@@ -43,6 +43,7 @@ secrets/
 .ansible/
 ansible.log
 ansible/inventory
+ansible/collections
 
 # Python
 __pycache__/
