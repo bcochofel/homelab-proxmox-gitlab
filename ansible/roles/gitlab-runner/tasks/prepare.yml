@@ -1,0 +1,9 @@
+---
+- name: Create directory structure for GitLab Runner
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    recurse: true
+  loop:
+    - "{{ vcs_root }}/config"
+    - "{{ vcs_root }}/data"

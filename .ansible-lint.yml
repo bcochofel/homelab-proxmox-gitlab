@@ -1,0 +1,53 @@
+---
+profile: production
+
+# These rules are overly strict or not applicable to IaC repos
+skip_list:
+  - yaml[line-length]     # Long lines allowed (cloud-init, URLs, etc.)
+  - role-name             # We don't enforce Galaxy naming in IaC repos
+  - no-relative-paths     # Sometimes useful for internal repos
+  - schema[meta]          # Useful but too strict for simple roles
+
+# Additional warnings (not fatal, useful in CI)
+warn_list:
+  - experimental
+  - no-changed-when
+  - risky-file-permissions
+
+# Do not auto-download roles; require that they are pre-installed
+offline: false
+
+# Tell ansible-lint which file kinds to apply rules to
+kinds:
+  - playbook: "**/playbooks/*.yml"
+  - playbook: "**/playbooks/*.yaml"
+  - tasks: "**/tasks/*.yml"
+  - tasks: "**/tasks/*.yaml"
+  - handlers: "**/handlers/*.yml"
+  - handlers: "**/handlers/*.yaml"
+  - vars: "**/vars/*.yml"
+  - vars: "**/vars/*.yaml"
+  - defaults: "**/defaults/*.yml"
+  - defaults: "**/defaults/*.yaml"
+  - meta: "**/meta/*.yml"
+  - meta: "**/meta/*.yaml"
+  - yaml: "**/*.yml"
+  - yaml: "**/*.yaml"
+
+# Prevent ansible-lint from scanning huge or irrelevant dirs
+exclude_paths:
+  - .git/
+  - .github/
+  - .venv/
+  - .node_modules/
+  - .cache/
+  - .tox/
+  - .pytest_cache/
+  - .terraform/
+  - terraform/
+  - packer/
+  - container/
+  - dockerfiles/
+  - ansible/collections/
+  - ansible/roles/**/templates/
+  - requirements.yml

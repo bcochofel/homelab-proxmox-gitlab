@@ -1,7 +1,8 @@
-.PHONY: help check all install install-binaries install-python-tools install-node-tools \
+.PHONY: help check all install install-binaries install-python-tools install-ansible-collections install-node-tools \
 		install-terraform install-terraform-docs install-trivy install-shellcheck install-tflint \
 		install-lint-hooks run-semantic-release lint-all tflint-init setup-gitmessage clean \
-		tf-init tf-validate tf-plan tf-apply
+		tf-init tf-validate tf-plan tf-apply \
+		gitlab gitlab-runner ping-gitlab ping-runner ansible-check ansible-lint
 
 # Cross-platform Makefile for installing dev tools with reproducibility and CI/CD in mind
 
@@ -33,9 +34,12 @@ TFLINT_URL := https://github.com/terraform-linters/tflint/releases/download/v$(T
 
 # Get all directories under terraform/
 ALL_DIRS := $(wildcard terraform/*/)
-
 # Remove terraform/modules/
 TF_REGIONS := $(filter-out terraform/modules/,$(ALL_DIRS))
+
+ANSIBLE_PLAYBOOK=ansible-playbook
+PLAYBOOK_DIR=ansible/playbooks
+INVENTORY_DIR=ansible/inventories
 
 help: ## Show this help message
 	@echo "Usage: make [target]"
@@ -66,7 +70,7 @@ check: ## Check system dependencies (Python and NodeJS versions)
 
 all: install ## Install all dependencies
 
-install: install-binaries install-python-tools install-node-tools install-lint-hooks tflint-init setup-gitmessage ## Install all dependencies
+install: install-binaries install-python-tools install-ansible-collections install-node-tools install-lint-hooks tflint-init setup-gitmessage ## Install all dependencies
 	@echo "✅ All tools and hooks installed successfully."
 
 install-binaries: install-terraform install-terraform-docs install-trivy install-shellcheck install-tflint ## Install binaries
@@ -78,6 +82,12 @@ install-python-tools: ## Install Python dependencies
 	@$(VENV_DIR)/bin/pip install -r requirements.txt
 	@echo "Installed Python tools:"
 	@$(VENV_DIR)/bin/pip list
+
+install-ansible-collections: ## Install Ansible collections
+	@echo "Installing Ansible collections..."
+	@$(VENV_DIR)/bin/ansible-galaxy collection install -r requirements.yml
+	@echo "Installed Ansible collections:"
+	@$(VENV_DIR)/bin/ansible-galaxy collection list
 
 install-node-tools: ## Install NodeJS dependencies
 	@echo "Installing Node.js tools using npm ci..."
@@ -192,3 +202,34 @@ tf-apply: ## Terraform: Apply
 		echo "👉 Running terraform apply in $$region"; \
 		$(MAKE) -C $$region apply || exit $$?; \
 	done
+
+
+gitlab: ## Provision GitLab server
+	@$(ANSIBLE_PLAYBOOK) \
+		-i $(INVENTORY_DIR)/gitlab.yml \
+		$(PLAYBOOK_DIR)/gitlab.yml
+
+
+gitlab-runner: ## Provision GitLab Runner
+	@$(ANSIBLE_PLAYBOOK) \
+		-i $(INVENTORY_DIR)/gitlab-runner.yml \
+		$(PLAYBOOK_DIR)/gitlab-runner.yml
+
+
+ansible-check: ## Dry run / check mode
+	@$(ANSIBLE_PLAYBOOK) \
+		--check \
+		-i $(INVENTORY_DIR)/gitlab.yml \
+		$(PLAYBOOK_DIR)/gitlab.yml
+
+
+ansible-lint: ## Lint roles and playbooks (requires ansible-lint)
+	@ansible-lint -c .ansible-lint.yml ansible/
+
+
+ping-gitlab: ## Ping GitLab hosts
+	@ansible -i $(INVENTORY_DIR)/gitlab.yml all -m ping
+
+
+ping-runner: ## Ping GitLab Runner hosts
+	@ansible -i $(INVENTORY_DIR)/gitlab-runner.yml all -m ping

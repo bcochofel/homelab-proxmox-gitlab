@@ -1,0 +1,7 @@
+---
+- name: Configure Gitlab
+  hosts: gitlab
+  become: true
+  roles:
+    - traefik
+    - gitlab

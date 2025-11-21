@@ -1,0 +1,21 @@
+---
+- name: Check if runner is already registered
+  ansible.builtin.stat:
+    path: "{{ gitlab_runner_config_path }}"
+  register: runner_config_state
+
+- name: Register runner inside container
+  ansible.builtin.command: >
+    docker exec gitlab-runner gitlab-runner register
+    --non-interactive
+    --url {{ gitlab_url }}
+    --registration-token {{ gitlab_runner_registration_token }}
+    --executor {{ gitlab_runner_executor }}
+    --docker-image {{ gitlab_runner_docker_image }}
+    --description "{{ gitlab_runner_description }}"
+    --tag-list "{{ gitlab_runner_tags | join(',') }}"
+    --run-untagged="true"
+    --locked="false"
+    --config /etc/gitlab-runner/config.toml
+  when: not runner_config_state.stat.exists
+  changed_when: false
