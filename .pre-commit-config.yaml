@@ -51,21 +51,21 @@ repos:
 
 #  # Ansible
 #  - repo: https://github.com/ansible/ansible-lint.git
-#    rev: v25.9.2
+#    rev: v25.11.0
 #    hooks:
 #      - id: ansible-lint
-#        args: [-c, .ansible-lint]
+#        args: [-c, .ansible-lint.yml]
 #        additional_dependencies: ["ansible"]
 #        language_version: python3
 #        files: ^ansible/.*\.ya?ml$
-#
-#  # YAML linting
-#  - repo: https://github.com/adrienverge/yamllint
-#    rev: v1.37.1
-#    hooks:
-#      - id: yamllint
-#        args: [--strict, -c=.yamllint.yml]
-#        files: ^ansible/.*\.ya?ml$
+
+  # YAML linting
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.37.1
+    hooks:
+      - id: yamllint
+        args: [--strict, -c=.yamllint.yml]
+        files: ^ansible/.*\.ya?ml$
 
   # Markdown linting
   - repo: https://github.com/igorshubovych/markdownlint-cli

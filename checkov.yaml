@@ -1,3 +1,4 @@
+---
 checkov:
   quiet: false
   compact: false

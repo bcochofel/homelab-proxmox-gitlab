@@ -1,0 +1,4 @@
+---
+vcs_root: /opt/vcs
+gitlab_domain: gitlab.example.com
+gitlab_email: admin@example.com

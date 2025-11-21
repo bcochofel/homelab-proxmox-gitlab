@@ -1,0 +1,9 @@
+services:
+  gitlab-runner:
+    image: gitlab/gitlab-runner:latest
+    container_name: gitlab-runner
+    restart: always
+    volumes:
+      - "{{ vcs_root }}/config:/etc/gitlab-runner"
+      - "{{ vcs_root }}/data:/home/gitlab-runner/data"
+      - /var/run/docker.sock:/var/run/docker.sock

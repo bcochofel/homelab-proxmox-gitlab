@@ -1,0 +1,7 @@
+---
+- name: Run prepare tasks
+  ansible.builtin.import_tasks: prepare.yml
+- name: Run compose tasks
+  ansible.builtin.import_tasks: compose.yml
+- name: Run register tasks
+  ansible.builtin.import_tasks: register.yml
