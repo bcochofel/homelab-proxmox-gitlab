@@ -1,12 +1,4 @@
 ---
-- name: Install required packages
-  ansible.builtin.apt:
-    name:
-      - docker.io
-      - docker-compose-plugin
-    state: present
-    update_cache: true
-
 - name: Create directory structure
   ansible.builtin.file:
     path: "{{ vcs_root }}/{{ item }}"

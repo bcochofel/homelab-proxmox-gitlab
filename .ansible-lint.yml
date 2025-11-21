@@ -49,3 +49,5 @@ exclude_paths:
   - container/
   - dockerfiles/
   - ansible/collections/
+  - ansible/roles/**/templates/
+  - requirements.yml
