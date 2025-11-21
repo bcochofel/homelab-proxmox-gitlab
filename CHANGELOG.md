@@ -1,3 +1,13 @@
+# [1.2.0](https://github.com/bcochofel/homelab-proxmox-gitlab/compare/v1.1.0...v1.2.0) (2025-11-21)
+
+
+### Features
+
+* **ansible:** Ansible Structure ([3dfd988](https://github.com/bcochofel/homelab-proxmox-gitlab/commit/3dfd98889ec242d4b2d4ca7c74f668be288ea0fd))
+* **ansible:** Ansible Structure ([4002065](https://github.com/bcochofel/homelab-proxmox-gitlab/commit/4002065cdaab073ebb084a308075ac533687cca3))
+* **ansible:** Ansible Structure ([e29b7ae](https://github.com/bcochofel/homelab-proxmox-gitlab/commit/e29b7aeb87e19b2319806f7b9805453efc12f41b))
+* **ansible:** Ansible Structure ([2c86a10](https://github.com/bcochofel/homelab-proxmox-gitlab/commit/2c86a108db597df05f40a08547cc4925b5b2e098))
+
 # [1.1.0](https://github.com/bcochofel/homelab-proxmox-gitlab/compare/v1.0.0...v1.1.0) (2025-11-20)
 
 
