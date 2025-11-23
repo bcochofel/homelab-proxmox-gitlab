@@ -35,16 +35,6 @@ cloud-init user.
 EOT
 }
 
-variable "ip_cidr" {
-  description = "IP CIDR"
-  type        = string
-}
-
-variable "gateway" {
-  description = "Network Gateway"
-  type        = string
-}
-
 variable "domain" {
   description = "Domain to use"
   type        = string
@@ -55,7 +45,7 @@ variable "nameserver" {
   type        = string
 }
 
-variable "admin_email" {
-  description = "Admin email"
+variable "registration_token" {
+  description = "Gitlab Registration Token"
   type        = string
 }

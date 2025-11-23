@@ -4,7 +4,7 @@ terraform {
   required_providers {
     proxmox = {
       source  = "Telmate/proxmox"
-      version = "3.0.1-rc4"
+      version = "3.0.2-rc05"
     }
     random = {
       source  = "hashicorp/random"
@@ -13,14 +13,6 @@ terraform {
     local = {
       source  = "hashicorp/local"
       version = "2.5.2"
-    }
-  }
-
-  cloud {
-    organization = "homelab-bcochofel-com"
-
-    workspaces {
-      name = "gitlab-runners"
     }
   }
 }

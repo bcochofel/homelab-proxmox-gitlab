@@ -10,7 +10,7 @@ provider "proxmox" {
 module "vm" {
   source = "../modules/vm"
 
-  role        = "gitlab"
+  role        = "gitlab-runner"
   pm_node     = "pve1"
   target_pool = ""
   pm_template = "ubuntu-24.04-template"
@@ -19,22 +19,23 @@ module "vm" {
   cipassword = var.cipassword
   sshkeys    = var.cisshkeys
 
-  cores     = 4
-  memory    = 8192
+  cores     = 2
+  memory    = 4096
   disk_size = "60G"
 
   seardomain = var.domain
   nameserver = var.nameserver
 
-  ipconfig0 = "ip=${var.ip_cidr},gw=${var.gateway}"
+  tags = "gitlab-runner;ubuntu"
 
-  tags = "gitlab;ubuntu"
+  inventory_path  = "../../ansible/inventories/gitlab-runner.yml"
+  group_vars_path = "../../ansible/group_vars/gitlab-runner.yml"
 
-  inventory_path  = "../../ansible/inventories/gitlab.yml"
-  group_vars_path = "../../ansible/group_vars/gitlab.yml"
+  create_registration_token = true
+  registration_token_path   = "../../ansible/group_vars/runner-token.yml"
 
   extra_vars = {
-    gitlab_domain = "gitlab.${var.domain}"
-    gitlab_email  = var.admin_email
+    gitlab_url         = "https://gitlab.${var.domain}"
+    registration_token = var.registration_token
   }
 }
