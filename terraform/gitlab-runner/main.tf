@@ -28,11 +28,11 @@ module "vm" {
 
   tags = "gitlab-runner;ubuntu"
 
-  inventory_path  = "../../ansible/inventories/gitlab-runner.yml"
-  group_vars_path = "../../ansible/group_vars/gitlab-runner.yml"
+  inventory_path  = "../../ansible/inventories/generated/gitlab-runner.yml"
+  group_vars_path = "../../ansible/inventories/group_vars/gitlab-runner/vars.yml"
 
   create_registration_token = true
-  registration_token_path   = "../../ansible/group_vars/runner-token.yml"
+  registration_token_path   = "../../ansible/inventories/group_vars/gitlab-runner/runner-token.yml"
 
   extra_vars = {
     gitlab_url         = "https://gitlab.${var.domain}"

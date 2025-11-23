@@ -48,6 +48,6 @@ exclude_paths:
   - packer/
   - container/
   - dockerfiles/
-  - ansible/collections/
-  - ansible/roles/**/templates/
+  - collections/
+  - roles/**/templates/
   - requirements.yml

@@ -1,7 +1,7 @@
 ---
 - name: Create Traefik directories
   ansible.builtin.file:
-    path: "{{ svc_root }}/{{ item }}"
+    path: "{{ svc_path }}/{{ item }}"
     state: directory
     recurse: true
   loop:
@@ -11,5 +11,5 @@
 - name: Deploy Traefik configuration
   ansible.builtin.template:
     src: traefik.yml.j2
-    dest: "{{ svc_root }}/config/traefik/traefik.yml"
+    dest: "{{ svc_path }}/config/traefik/traefik.yml"
     mode: "0644"

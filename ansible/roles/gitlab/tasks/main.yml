@@ -1,7 +1,7 @@
 ---
 - name: Create directory structure
   ansible.builtin.file:
-    path: "{{ svc_root }}/{{ item }}"
+    path: "{{ svc_path }}/{{ item }}"
     state: directory
     recurse: true
   loop:
@@ -12,10 +12,10 @@
 - name: Deploy docker-compose definition
   ansible.builtin.template:
     src: docker-compose.yml.j2
-    dest: "{{ svc_root }}/docker-compose.yml"
+    dest: "{{ svc_path }}/docker-compose.yml"
     mode: "0644"
 
 - name: Start GitLab stack
   community.docker.docker_compose:
-    project_src: "{{ svc_root }}"
+    project_src: "{{ svc_path }}"
     state: present
