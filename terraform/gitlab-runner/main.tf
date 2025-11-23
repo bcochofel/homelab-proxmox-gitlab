@@ -36,6 +36,6 @@ module "vm" {
 
   extra_vars = {
     gitlab_url         = "https://gitlab.${var.domain}"
-    registration_token = "CHANGE_ME"
+    registration_token = var.registration_token
   }
 }

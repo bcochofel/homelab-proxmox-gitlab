@@ -44,3 +44,8 @@ variable "nameserver" {
   description = "DNS Server"
   type        = string
 }
+
+variable "registration_token" {
+  description = "Gitlab Registration Token"
+  type        = string
+}
