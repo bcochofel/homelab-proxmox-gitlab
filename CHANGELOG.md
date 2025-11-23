@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/bcochofel/homelab-proxmox-gitlab/compare/v1.2.0...v1.3.0) (2025-11-23)
+
+
+### Features
+
+* **teraform:** New VM creation module ([a951ec4](https://github.com/bcochofel/homelab-proxmox-gitlab/commit/a951ec40fadfbd928dfecd811d54bd28fd8148c8))
+* **teraform:** New VM creation module ([dea888c](https://github.com/bcochofel/homelab-proxmox-gitlab/commit/dea888cc276d8b2f769b24fb0d071c3495c72b15))
+* **teraform:** New VM creation module ([8f40a42](https://github.com/bcochofel/homelab-proxmox-gitlab/commit/8f40a424554cba71da7c6b79c232c2f5d5e492f4))
+
 # [1.2.0](https://github.com/bcochofel/homelab-proxmox-gitlab/compare/v1.1.0...v1.2.0) (2025-11-21)
 
 
