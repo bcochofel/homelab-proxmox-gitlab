@@ -42,7 +42,8 @@ secrets/
 *.retry
 .ansible/
 ansible.log
-ansible/inventory
+ansible/inventories
+ansible/group_vars
 ansible/collections
 
 # Python

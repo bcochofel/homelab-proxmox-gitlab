@@ -4,15 +4,52 @@ provider "proxmox" {
   pm_api_token_id     = var.pm_api_token_id
   pm_api_token_secret = var.pm_api_token_secret
 
-  #pm_tls_insecure = true
+  pm_tls_insecure = true
 }
 
-module "gitlab" {
-  source = "../modules/create_server"
-
-  vms = var.vms
-
-  default_ciuser     = var.ciuser
-  default_cipassword = var.cipassword
-  default_cisshkeys  = var.cisshkeys
+provider "pihole" {
+  url      = var.pihole_url
+  password = var.pihole_admin_password
 }
+
+module "vm" {
+  source = "../modules/vm"
+
+  role        = "gitlab"
+  pm_node     = "pve1"
+  target_pool = ""
+  pm_template = "ubuntu-24.04-template"
+
+  ciuser     = var.ciuser
+  cipassword = var.cipassword
+  sshkeys    = var.cisshkeys
+
+  cores     = 4
+  memory    = 8192
+  disk_size = "60G"
+
+  seardomain = var.domain
+  nameserver = var.nameserver
+
+  ipconfig0 = "ip=${var.ip_cidr},gw=${var.gateway}"
+
+  tags = "gitlab;ubuntu"
+
+  inventory_path  = "../../ansible/inventories/gitlab.yml"
+  group_vars_path = "../../ansible/group_vars/gitlab.yml"
+
+  extra_vars = {
+    gitlab_domain = "gitlab.${var.domain}"
+    gitlab_email  = var.admin_email
+  }
+}
+
+#resource "pihole_dns_record" "record" {
+#  domain = "${module.vm.hostname}.${var.domain}"
+#  ip     = module.vm.ip
+#}
+#
+#resource "pihole_cname_record" "record" {
+#  domain = "${module.vm.hostname}.${var.domain}"
+#  target = "gitlab.${var.domain}"
+#}

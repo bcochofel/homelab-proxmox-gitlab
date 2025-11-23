@@ -17,17 +17,6 @@ variable "pm_api_token_secret" {
   sensitive   = true
 }
 
-variable "pihole_url" {
-  description = "Pihole URL"
-  type        = string
-}
-
-variable "pihole_admin_password" {
-  description = "Pihole Admin password"
-  type        = string
-  sensitive   = true
-}
-
 variable "ciuser" {
   type        = string
   description = "Override the default cloud-init user"
@@ -46,16 +35,6 @@ cloud-init user.
 EOT
 }
 
-variable "ip_cidr" {
-  description = "IP CIDR"
-  type        = string
-}
-
-variable "gateway" {
-  description = "Network Gateway"
-  type        = string
-}
-
 variable "domain" {
   description = "Domain to use"
   type        = string
@@ -63,10 +42,5 @@ variable "domain" {
 
 variable "nameserver" {
   description = "DNS Server"
-  type        = string
-}
-
-variable "admin_email" {
-  description = "Admin email"
   type        = string
 }
