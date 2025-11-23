@@ -17,17 +17,6 @@ variable "pm_api_token_secret" {
   sensitive   = true
 }
 
-variable "pihole_url" {
-  description = "Pihole URL"
-  type        = string
-}
-
-variable "pihole_admin_password" {
-  description = "Pihole Admin password"
-  type        = string
-  sensitive   = true
-}
-
 variable "ciuser" {
   type        = string
   description = "Override the default cloud-init user"

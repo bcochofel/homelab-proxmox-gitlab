@@ -7,11 +7,6 @@ provider "proxmox" {
   pm_tls_insecure = true
 }
 
-provider "pihole" {
-  url      = var.pihole_url
-  password = var.pihole_admin_password
-}
-
 module "vm" {
   source = "../modules/vm"
 
@@ -43,13 +38,3 @@ module "vm" {
     gitlab_email  = var.admin_email
   }
 }
-
-#resource "pihole_dns_record" "record" {
-#  domain = "${module.vm.hostname}.${var.domain}"
-#  ip     = module.vm.ip
-#}
-#
-#resource "pihole_cname_record" "record" {
-#  domain = "${module.vm.hostname}.${var.domain}"
-#  target = "gitlab.${var.domain}"
-#}

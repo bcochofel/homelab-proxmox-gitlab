@@ -37,8 +37,6 @@ No resources.
 | <a name="input_gateway"></a> [gateway](#input\_gateway) | Network Gateway | `string` | n/a | yes |
 | <a name="input_ip_cidr"></a> [ip\_cidr](#input\_ip\_cidr) | IP CIDR | `string` | n/a | yes |
 | <a name="input_nameserver"></a> [nameserver](#input\_nameserver) | DNS Server | `string` | n/a | yes |
-| <a name="input_pihole_admin_password"></a> [pihole\_admin\_password](#input\_pihole\_admin\_password) | Pihole Admin password | `string` | n/a | yes |
-| <a name="input_pihole_url"></a> [pihole\_url](#input\_pihole\_url) | Pihole URL | `string` | n/a | yes |
 | <a name="input_pm_api_token_id"></a> [pm\_api\_token\_id](#input\_pm\_api\_token\_id) | This is an API token you have previously created for a specific user. | `string` | n/a | yes |
 | <a name="input_pm_api_token_secret"></a> [pm\_api\_token\_secret](#input\_pm\_api\_token\_secret) | This uuid is only available when the token was initially created. | `string` | n/a | yes |
 | <a name="input_pm_api_url"></a> [pm\_api\_url](#input\_pm\_api\_url) | This is the target Proxmox API endpoint. | `string` | n/a | yes |
