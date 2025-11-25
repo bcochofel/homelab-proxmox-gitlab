@@ -40,10 +40,11 @@ secrets/
 
 # Ansible
 *.retry
+ansible/inventories/generated/*.yml
+ansible/inventories/generated/*.yaml
+!ansible/inventories/generated/.gitkeep
 .ansible/
 ansible.log
-ansible/inventories
-ansible/group_vars
 ansible/collections
 
 # Python

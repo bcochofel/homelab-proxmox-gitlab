@@ -10,7 +10,7 @@ provider "proxmox" {
 module "vm" {
   source = "../modules/vm"
 
-  role        = "gitlab-runner"
+  role        = "gitlab_runner"
   pm_node     = "pve1"
   target_pool = ""
   pm_template = "ubuntu-24.04-template"
@@ -28,11 +28,11 @@ module "vm" {
 
   tags = "gitlab-runner;ubuntu"
 
-  inventory_path  = "../../ansible/inventories/gitlab-runner.yml"
-  group_vars_path = "../../ansible/group_vars/gitlab-runner.yml"
+  inventory_path  = "../../ansible/inventories/generated/gitlab_runner.yml"
+  group_vars_path = "../../ansible/inventories/group_vars/gitlab_runner/vars.yml"
 
   create_registration_token = true
-  registration_token_path   = "../../ansible/group_vars/runner-token.yml"
+  registration_token_path   = "../../ansible/inventories/group_vars/gitlab_runner/runner-token.yml"
 
   extra_vars = {
     gitlab_url         = "https://gitlab.${var.domain}"

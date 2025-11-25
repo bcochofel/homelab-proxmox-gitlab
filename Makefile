@@ -1,8 +1,7 @@
 .PHONY: help check all install install-binaries install-python-tools install-ansible-collections install-node-tools \
 		install-terraform install-terraform-docs install-trivy install-shellcheck install-tflint \
 		install-lint-hooks run-semantic-release lint-all tflint-init setup-gitmessage clean \
-		tf-init tf-validate tf-plan tf-apply \
-		gitlab gitlab-runner ping-gitlab ping-runner ansible-check ansible-lint
+		tf-init tf-validate tf-plan tf-apply
 
 # Cross-platform Makefile for installing dev tools with reproducibility and CI/CD in mind
 
@@ -37,9 +36,13 @@ ALL_DIRS := $(wildcard terraform/*/)
 # Remove terraform/modules/
 TF_REGIONS := $(filter-out terraform/modules/,$(ALL_DIRS))
 
-ANSIBLE_PLAYBOOK=ansible-playbook
-PLAYBOOK_DIR=ansible/playbooks
-INVENTORY_DIR=ansible/inventories
+ANSIBLE_DIR := ansible
+ANSIBLE_INVENTORIES := $(ANSIBLE_DIR)/inventories/generated
+ANSIBLE_PLAYBOOKS := $(ANSIBLE_DIR)/playbooks
+
+# Ansible configuration
+ANSIBLE_CONFIG := $(ANSIBLE_DIR)/ansible.cfg
+export ANSIBLE_CONFIG
 
 help: ## Show this help message
 	@echo "Usage: make [target]"
@@ -85,7 +88,7 @@ install-python-tools: ## Install Python dependencies
 
 install-ansible-collections: ## Install Ansible collections
 	@echo "Installing Ansible collections..."
-	@$(VENV_DIR)/bin/ansible-galaxy collection install -r requirements.yml
+	@cd ansible && ../$(VENV_DIR)/bin/ansible-galaxy collection install -r requirements.yml
 	@echo "Installed Ansible collections:"
 	@$(VENV_DIR)/bin/ansible-galaxy collection list
 
@@ -202,34 +205,3 @@ tf-apply: ## Terraform: Apply
 		echo "👉 Running terraform apply in $$region"; \
 		$(MAKE) -C $$region apply || exit $$?; \
 	done
-
-
-gitlab: ## Provision GitLab server
-	@$(ANSIBLE_PLAYBOOK) \
-		-i $(INVENTORY_DIR)/gitlab.yml \
-		$(PLAYBOOK_DIR)/gitlab.yml
-
-
-gitlab-runner: ## Provision GitLab Runner
-	@$(ANSIBLE_PLAYBOOK) \
-		-i $(INVENTORY_DIR)/gitlab-runner.yml \
-		$(PLAYBOOK_DIR)/gitlab-runner.yml
-
-
-ansible-check: ## Dry run / check mode
-	@$(ANSIBLE_PLAYBOOK) \
-		--check \
-		-i $(INVENTORY_DIR)/gitlab.yml \
-		$(PLAYBOOK_DIR)/gitlab.yml
-
-
-ansible-lint: ## Lint roles and playbooks (requires ansible-lint)
-	@ansible-lint -c .ansible-lint.yml ansible/
-
-
-ping-gitlab: ## Ping GitLab hosts
-	@ansible -i $(INVENTORY_DIR)/gitlab.yml all -m ping
-
-
-ping-runner: ## Ping GitLab Runner hosts
-	@ansible -i $(INVENTORY_DIR)/gitlab-runner.yml all -m ping

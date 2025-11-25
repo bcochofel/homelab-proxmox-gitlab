@@ -3,7 +3,7 @@ resource "random_pet" "hostname" {
 }
 
 locals {
-  hostname = "${var.role}-${random_pet.hostname.id}"
+  hostname = random_pet.hostname.id
 }
 
 resource "proxmox_vm_qemu" "vm" {

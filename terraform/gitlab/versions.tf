@@ -6,10 +6,6 @@ terraform {
       source  = "Telmate/proxmox"
       version = "3.0.2-rc05"
     }
-    pihole = {
-      source  = "ryanwholey/pihole"
-      version = "2.0.0-beta.1"
-    }
     random = {
       source  = "hashicorp/random"
       version = "3.6.3"

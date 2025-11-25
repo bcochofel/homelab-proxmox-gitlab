@@ -30,8 +30,8 @@ module "vm" {
 
   tags = "gitlab;ubuntu"
 
-  inventory_path  = "../../ansible/inventories/gitlab.yml"
-  group_vars_path = "../../ansible/group_vars/gitlab.yml"
+  inventory_path  = "../../ansible/inventories/generated/gitlab.yml"
+  group_vars_path = "../../ansible/inventories/group_vars/gitlab/vars.yml"
 
   extra_vars = {
     gitlab_domain = "gitlab.${var.domain}"

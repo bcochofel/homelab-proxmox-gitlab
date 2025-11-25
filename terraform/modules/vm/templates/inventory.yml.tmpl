@@ -1,6 +1,8 @@
 ---
-${role}:
-  hosts:
-    ${hostname}:
-      ansible_host: ${ip}
-      ansible_user: ubuntu
+all:
+  children:
+    ${role}:
+      hosts:
+        ${hostname}:
+          ansible_host: ${ip}
+          ansible_user: ubuntu

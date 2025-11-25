@@ -54,8 +54,10 @@ repos:
     rev: v25.11.0
     hooks:
       - id: ansible-lint
-        args: [-c, .ansible-lint.yml]
         additional_dependencies: ["ansible"]
+        always_run: false
+        pass_filenames: true
+        entry: bash -c 'cd ansible && ansible-lint'
         language_version: python3
         files: ^ansible/.*\.ya?ml$
 

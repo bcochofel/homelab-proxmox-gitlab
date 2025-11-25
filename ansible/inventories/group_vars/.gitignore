@@ -1,0 +1,9 @@
+# Ignore everything in this folder
+*
+
+# But keep the 'all' directory
+!all/
+!all/**
+
+# Keep this .gitignore file itself
+!.gitignore
