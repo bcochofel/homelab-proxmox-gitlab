@@ -58,7 +58,7 @@ No modules.
 | <a name="input_pm_node"></a> [pm\_node](#input\_pm\_node) | The name of the PVE Node on which to place the VM. | `string` | n/a | yes |
 | <a name="input_pm_template"></a> [pm\_template](#input\_pm\_template) | n/a | `string` | n/a | yes |
 | <a name="input_registration_token_path"></a> [registration\_token\_path](#input\_registration\_token\_path) | n/a | `string` | `null` | no |
-| <a name="input_role"></a> [role](#input\_role) | What role this VM has (gitlab or gitlab-runner) | `string` | n/a | yes |
+| <a name="input_role"></a> [role](#input\_role) | What role this VM has (gitlab or gitlab\_runner) | `string` | n/a | yes |
 | <a name="input_scsihw"></a> [scsihw](#input\_scsihw) | The SCSI controller to emulate. | `string` | `"virtio-scsi-pci"` | no |
 | <a name="input_seardomain"></a> [seardomain](#input\_seardomain) | Sets default DNS search domain suffix. | `string` | `""` | no |
 | <a name="input_sockets"></a> [sockets](#input\_sockets) | The number of CPU sockets to allocate to the Qemu guest. | `number` | `1` | no |

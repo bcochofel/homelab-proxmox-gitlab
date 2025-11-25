@@ -19,8 +19,13 @@ variable "full_clone" {
 }
 
 variable "role" {
-  description = "What role this VM has (gitlab or gitlab-runner)"
+  description = "What role this VM has (gitlab or gitlab_runner)"
   type        = string
+
+  validation {
+    condition     = contains(["gitlab", "gitlab_runner"], var.role)
+    error_message = "Valid values for var: gitlab, gitlab_runner"
+  }
 }
 
 variable "boot" {

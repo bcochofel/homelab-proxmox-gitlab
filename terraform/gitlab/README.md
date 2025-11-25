@@ -7,7 +7,6 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.0, < 2.0 |
 | <a name="requirement_local"></a> [local](#requirement\_local) | 2.5.2 |
-| <a name="requirement_pihole"></a> [pihole](#requirement\_pihole) | 2.0.0-beta.1 |
 | <a name="requirement_proxmox"></a> [proxmox](#requirement\_proxmox) | 3.0.2-rc05 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.6.3 |
 

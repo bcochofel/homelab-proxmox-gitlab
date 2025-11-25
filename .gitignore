@@ -42,6 +42,7 @@ secrets/
 *.retry
 ansible/inventories/generated/*.yml
 ansible/inventories/generated/*.yaml
+ansible/inventories/generated/group_vars/*
 !ansible/inventories/generated/group_vars/all/
 !ansible/inventories/generated/.gitkeep
 .ansible/
